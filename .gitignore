@@ -1,0 +1,8 @@
+node_modules
+dist/*.js
+*.log
+.clasp.json
+
+# secret files
+creds.json
+.clasprc.json
