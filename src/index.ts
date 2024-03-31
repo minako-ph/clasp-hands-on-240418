@@ -1,7 +1,9 @@
-import { main } from "./main";
+import { doPost, main, remind } from './main'
 
 declare const global: {
-  [x: string]: unknown;
-};
+  [x: string]: unknown
+}
 
-global.main = main;
+global.main = main
+global.doPost = doPost
+global.remind = remind
