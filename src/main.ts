@@ -52,9 +52,9 @@ const add = (text: string, replyToken: string, userId: string): void => {
   }
   const match = text.match(reg)
   // 日付を取得
-  const dateStr = match![1]
+  const dateStr = match?.[1] ?? ''
   const date = new Date(dateStr)
-  // 有効な日付であることを確認する
+  // 有効な日付であることを確認する, 空文字もここで弾けるはず
   if (isNaN(date.getTime())) {
     sendError(replyToken)
     return
@@ -71,7 +71,7 @@ const add = (text: string, replyToken: string, userId: string): void => {
   // 新しい行を作成して書き込む
   const newRow: Row = Array.from({ length: columnHeader.length }, () => '')
   newRow[columnIndexMap.date] = dateStr
-  newRow[columnIndexMap.message] = match![2]
+  newRow[columnIndexMap.message] = match?.[2] ?? ''
   newRow[columnIndexMap.user_id] = userId
   sheet.appendRow(newRow)
 }
