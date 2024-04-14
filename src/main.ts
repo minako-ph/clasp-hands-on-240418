@@ -74,6 +74,14 @@ const add = (text: string, replyToken: string, userId: string): void => {
   newRow[columnIndexMap.message] = match?.[2] ?? ''
   newRow[columnIndexMap.user_id] = userId
   sheet.appendRow(newRow)
+  // 登録完了メッセージを送信する
+  const messages = [
+    {
+      type: 'text',
+      text: '登録しました',
+    },
+  ]
+  sendReplyMessage(replyToken, messages)
 }
 
 /**
